@@ -30,18 +30,12 @@ class BasicTVCell: UITableViewCell {
     }
     
     func configure(with data: Post) {
-//        setImage(data.imageURL)
+        if let imageName = data.imageURL.components(separatedBy: "/").last, let url = URL(string: data.imageURL) {
+            postImage.setImage(imageName: imageName, url: url)
+        }
         userNameLabel.text = data.userName
         commentsCountLabel.text = "💬 " + "\(data.commentsCount)"
         dateLabel.text = format(date: data.dateCreated)
-    }
-    
-    func setImage(_ urlString: String, completion: ((_:UIImage?) -> ())?) {
-        guard let imageName = urlString.components(separatedBy: "/").last, let url = URL(string: urlString) else { return }
-        ImageManager.getImage(imageName, for: url) { [weak self] image in
-//            self?.postImage.image = image
-            completion?(image)
-        }
     }
     
     private func format(date: Date) -> String {

@@ -33,3 +33,12 @@ extension UIImage {
         return UIGraphicsGetImageFromCurrentImageContext()
     }
 }
+
+extension UIImageView {
+    func setImage(imageName: String, url: URL) {
+        ImageManager.getImage(imageName, for: url) { [weak self] image in
+            guard let self = self, let image = image else { return }
+            self.image = image
+        }
+    }
+}

@@ -25,7 +25,6 @@ final class FeedViewController: UIViewController {
         tableView.reloadData()
     }
     
-    
     private var posts: [Post] = ParsingManager.shared.getParsedData()
     
     override func viewDidLoad() {
@@ -57,11 +56,6 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
             cell = tableView.cell(cellType: PhotoPostTVCell.self)
         }
         cell.configure(with: post)
-        cell.setImage(post.imageURL) { image in
-            if let _ = tableView.cellForRow(at: indexPath) {
-                cell.postImage.image = image
-            }
-        }
         return cell
     }
     

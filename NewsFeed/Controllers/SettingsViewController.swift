@@ -15,8 +15,8 @@ final class SettingsViewController: UIViewController {
     @IBOutlet private weak var countLimitLabel: UILabel!
     @IBOutlet private weak var memoryLimitLabel: UILabel!
     
-    let countLimit = CacheManager.shared.countLimit
-    let memoryLimit = CacheManager.shared.memoryLimit
+    private let countLimit = CacheManager.shared.countLimit
+    private let memoryLimit = CacheManager.shared.memoryLimit
 
     @IBAction func countLimitChanged(_ sender: UISlider) {
         countLimitLabel.text = "\(Int(sender.value))"
